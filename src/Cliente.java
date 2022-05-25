@@ -13,11 +13,15 @@ public class Cliente {
     }
 
     public void abrirContaCorrente(){
-        this.contas.add(new ContaCorrente(this));
+        Conta conta = new ContaCorrente(this);
+        this.contas.add(conta);
+        System.out.printf("Conta corrente com número %d aberta para %s", conta.getConta(), this.getNome());
     }
 
     public void abrirContaPoupanca(){
-        this.contas.add(new ContaPoupanca(this));
+        Conta conta = new ContaPoupanca(this);
+        this.contas.add(conta);
+        System.out.printf("Conta poupança com número %d aberta para %s", conta.getConta(), this.getNome());
     }
 
     @Override

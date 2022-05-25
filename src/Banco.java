@@ -10,7 +10,7 @@ public class Banco {
         clientes = new ArrayList<>();
     }
 
-    public void cadastrarCliente(String nome, String cpf){
+    public void registrarCliente(String nome, String cpf){
         Cliente cliente = new Cliente(nome, cpf);
         clientes.add(cliente);
     }
@@ -18,7 +18,7 @@ public class Banco {
     public void listarClientes(){
         System.out.printf("Clientes %s: %n", nome);
         for (Cliente cliente:
-             clientes) {
+                clientes) {
             System.out.println(cliente);
         }
     }
@@ -61,12 +61,10 @@ public class Banco {
         Conta contaDestino = encontrarConta(numeroDestino);
 
         if (contaOrigem == null){
-            System.out.printf("Conta com número %d não encontrada.%n", numeroOrigem);
             return;
         }
 
         if (contaDestino == null){
-            System.out.printf("Conta com número %d não encontrada.%n", numeroOrigem);
             return;
         }
 
@@ -76,16 +74,17 @@ public class Banco {
         Cliente cliente = encontrarCliente(cpf);
 
         if (cliente == null){
-            System.out.printf("Cliente com CPF %s não encontrado.%n", cpf);
             return;
         }
 
+        int numero;
+
         switch (tipoConta){
-            case 1: cliente.abrirContaCorrente();
-                System.out.printf("Conta corrente aberta em nome de %s%n", cliente.getNome());
+            case 1:
+                 cliente.abrirContaCorrente();
                 break;
-            case 2: cliente.abrirContaPoupanca();
-                System.out.printf("Conta poupança aberta em nome de %s%n", cliente.getNome());
+            case 2:
+                cliente.abrirContaPoupanca();
                 break;
             default:
                 System.out.println("Tipo de conta não existente.");
@@ -96,11 +95,12 @@ public class Banco {
     private Cliente encontrarCliente(String cpf){
 
         for (Cliente cliente:
-             clientes) {
-            if (cliente.getCpf() == cpf)
+                clientes) {
+            if (cliente.getCpf().equals(cpf))
                     return cliente;
         }
 
+        System.out.printf("Cliente com CPF %s não encontrado.", cpf);
         return null;
     }
 
@@ -111,6 +111,7 @@ public class Banco {
                 return cliente.getConta(numero);
         }
 
+        System.out.printf("Conta com número %d não encontrada.", numero);
         return null;
     }
 
