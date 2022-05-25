@@ -13,20 +13,20 @@ public class Conta implements IConta {
     @Override
     public void sacar(double valor) {
         saldo -= valor;
-        System.out.printf("%.2f scado da conta %d%n", valor, this.conta);
+        System.out.printf("R$ %.2f sacado da conta de %s%n", valor, this.cliente.getNome());
     }
 
     @Override
     public void depositar(double valor) {
         saldo += valor;
-        System.out.printf("%.2f depositado para conta %d%n", valor, this.conta);
+        System.out.printf("R$ %.2f depositado na conta de %s%n", valor, this.cliente.getNome());
     }
 
     @Override
     public void transferir(double valor, Conta contaDestino) {
-        contaDestino.depositar(valor);
+        System.out.println("Transferindo:");
         this.sacar(valor);
-        System.out.printf("%.2f transferido para conta %d%n", valor, contaDestino.getConta());
+        contaDestino.depositar(valor);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Conta implements IConta {
         System.out.printf("CPF: %s\n", this.cliente.getCpf());
         System.out.printf("Agência: %d\n", this.agencia);
         System.out.printf("Conta: %d\n", this.conta);
-        System.out.printf("Saldo: %.2f\n", this.saldo);
+        System.out.printf("Saldo: R$ %.2f\n", this.saldo);
     }
 
     public int getAgencia() {
@@ -50,5 +50,7 @@ public class Conta implements IConta {
         return saldo;
     }
 
-
+    public Cliente getCliente() {
+        return cliente;
+    }
 }

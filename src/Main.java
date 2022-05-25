@@ -8,14 +8,19 @@ public class Main {
 
         banco.listarClientes();
 
+        System.out.println();
+
         banco.abrirConta("335471258-69", 1);
         banco.abrirConta("320347125-69", 2);
-        banco.abrirConta("35", 1);
-        banco.abrirConta("335471258-69", 5);
+
+        System.out.println();
 
         banco.depositar(2000, 2500.0);
+        System.out.println();
         banco.sacar(2000, 1000.0);
+        System.out.println();
         banco.transferir(2000, 1000,500.0);
+        System.out.println();
 
         System.out.println();
         banco.imprimirExtrato(2000);
